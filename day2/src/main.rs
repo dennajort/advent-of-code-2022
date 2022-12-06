@@ -42,8 +42,8 @@ fn main() -> std::io::Result<()> {
         }
     }
 
-    println!("{:?}", first_score);
-    println!("{:?}", second_score);
+    println!("part 1 result {}", first_score);
+    println!("part 2 result {}", second_score);
 
     Ok(())
 }

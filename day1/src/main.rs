@@ -20,7 +20,7 @@ fn main() -> std::io::Result<()> {
     }
     calories.sort_by(|a,b| b.cmp(a));
     calories.truncate(3);
-    println!("{:?}", calories);
-    println!("{:?}", calories.iter().sum::<u64>());
+    println!("part 1 result {}", calories[0]);
+    println!("part 2 result {}", calories.iter().sum::<u64>());
     Ok(())
 }
