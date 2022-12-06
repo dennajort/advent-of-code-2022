@@ -16,36 +16,36 @@ fn main() -> std::io::Result<()> {
     let mut total_priorities: u64 = 0;
     let mut total_badges: u64 = 0;
     let mut line_stack = Vec::new();
+    
     for line in lines {
-        if let Ok(line) = line {
-            let (first, last) = line.split_at(line.len()/2);
-            'outer: for fc in first.chars() {
-                for lc in last.chars() {
-                    if fc == lc {
-                        println!("{} {} {}", first, last, fc);
-                        total_priorities += item_type_value(fc);
-                        break 'outer;
+        let line = line.unwrap();
+        let (first, last) = line.split_at(line.len()/2);
+        'outer: for fc in first.chars() {
+            for lc in last.chars() {
+                if fc == lc {
+                    println!("{} {} {}", first, last, fc);
+                    total_priorities += item_type_value(fc);
+                    break 'outer;
+                }
+            }
+        }
+        line_stack.push(line);
+        if line_stack.len() == 3 {
+            'outer: for fc in line_stack[0].chars() {
+                for sc in line_stack[1].chars() {
+                    if fc != sc {
+                        continue;
+                    }
+                    for tc in line_stack[2].chars() {
+                        if fc == tc {
+                            println!("common badge {}", fc);
+                            total_badges += item_type_value(fc);
+                            break 'outer;
+                        }
                     }
                 }
             }
-            line_stack.push(line);
-            if line_stack.len() == 3 {
-                'outer: for fc in line_stack[0].chars() {
-                    for sc in line_stack[1].chars() {
-                        if fc != sc {
-                            continue;
-                        }
-                        for tc in line_stack[2].chars() {
-                            if fc == tc {
-                                println!("common badge {}", fc);
-                                total_badges += item_type_value(fc);
-                                break 'outer;
-                            }
-                        }
-                    }
-                }
-                line_stack.clear();
-            }
+            line_stack.clear();
         }
     }
 
