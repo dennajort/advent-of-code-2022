@@ -4,7 +4,7 @@ use std::io::{self, BufRead};
 fn main() -> std::io::Result<()> {
     let file = File::open("input.txt")?;
     let lines = io::BufReader::new(file).lines();
-    
+
     let mut calories = Vec::new();
     let mut current_calories: u64 = 0;
     
