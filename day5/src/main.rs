@@ -5,13 +5,13 @@ use std::io::{self, BufRead};
 fn main() -> std::io::Result<()> {
     let file = File::open("input.txt")?;
     let mut lines = io::BufReader::new(file).lines();
-    
+
     let mut map = Vec::<VecDeque<char>>::with_capacity(9);
     map.resize(9, VecDeque::new());
 
     let mut map_sec = Vec::<VecDeque<char>>::with_capacity(9);
     map_sec.resize(9, VecDeque::new());
-    
+
     loop {
         let line = lines.next().unwrap().unwrap();
         if line.starts_with(" 1") {
@@ -42,7 +42,7 @@ fn main() -> std::io::Result<()> {
         for _ in 0..qty {
             let crte = map[src].pop_front().unwrap();
             map[dst].push_front(crte);
-            
+
             buf.push(map_sec[src].pop_front().unwrap());
         }
 
@@ -54,7 +54,6 @@ fn main() -> std::io::Result<()> {
     let result: String = map.iter().map(|s| s.front().unwrap_or(&' ')).collect();
     let result_sec: String = map_sec.iter().map(|s| s.front().unwrap_or(&' ')).collect();
 
-    
     println!("part 1 result '{}'", result);
     println!("part 2 result '{}'", result_sec);
 

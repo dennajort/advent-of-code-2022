@@ -19,7 +19,7 @@ impl Rng {
 fn main() -> std::io::Result<()> {
     let file = File::open("input.txt")?;
     let lines = io::BufReader::new(file).lines();
-    
+
     let mut contains_count: u64 = 0;
     let mut overlaps_count: u64 = 0;
     for line in lines {

@@ -4,7 +4,7 @@ use std::io::{self, BufRead};
 fn main() -> std::io::Result<()> {
     let file = File::open("input.txt")?;
     let lines = io::BufReader::new(file).lines();
-    
+
     let mut first_score: u64 = 0;
     let mut second_score: u64 = 0;
     for line in lines {

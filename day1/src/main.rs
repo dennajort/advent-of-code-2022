@@ -7,7 +7,7 @@ fn main() -> std::io::Result<()> {
 
     let mut calories = Vec::new();
     let mut current_calories: u64 = 0;
-    
+
     for line in lines {
         let line = line.unwrap();
         if line == "" {
@@ -19,6 +19,7 @@ fn main() -> std::io::Result<()> {
             current_calories += line.parse::<u64>().unwrap();
         }
     }
+
     calories.sort_unstable_by(|a,b| b.cmp(a));
     let top_sum: u64 = calories[..3].iter().sum();
     println!("part 1 result {}", calories[0]);

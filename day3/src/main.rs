@@ -12,11 +12,11 @@ fn item_type_value(item: char) -> u64 {
 fn main() -> std::io::Result<()> {
     let file = File::open("input.txt")?;
     let lines = io::BufReader::new(file).lines();
-    
+
     let mut total_priorities: u64 = 0;
     let mut total_badges: u64 = 0;
     let mut line_stack = Vec::new();
-    
+
     for line in lines {
         let line = line.unwrap();
         let (first, last) = line.split_at(line.len()/2);
